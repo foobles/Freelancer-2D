@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/PanelStyle.tres" type="StyleBox" id=1]
+[ext_resource path="res://assets/Teko-SemiBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/TekoLight.tres" type="DynamicFont" id=3]
+[ext_resource path="res://classes/DialogBox.gd" type="Script" id=4]
+[ext_resource path="res://scenes/ResponseBox.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+use_filter = true
+extra_spacing_top = -10
+extra_spacing_bottom = -10
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxLine" id=2]
+color = Color( 0.952941, 0.952941, 0.952941, 1 )
+thickness = 3
+
+[node name="DialogBox" type="VBoxContainer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -270.0
+custom_constants/separation = 20
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpeechArea" type="PanelContainer" parent="."]
+margin_right = 1152.0
+margin_bottom = 181.0
+custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SpeechArea"]
+margin_left = 36.0
+margin_top = 36.0
+margin_right = 1116.0
+margin_bottom = 145.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameLabel" type="Label" parent="SpeechArea/VBoxContainer"]
+margin_right = 1080.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.54902 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+text = "Name"
+
+[node name="HSeparator" type="HSeparator" parent="SpeechArea/VBoxContainer"]
+margin_top = 31.0
+margin_right = 1080.0
+margin_bottom = 35.0
+custom_styles/separator = SubResource( 2 )
+
+[node name="TextBox" type="RichTextLabel" parent="SpeechArea/VBoxContainer"]
+margin_top = 39.0
+margin_right = 1080.0
+margin_bottom = 109.0
+rect_min_size = Vector2( 0, 70 )
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.54902 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+custom_constants/line_separation = -7
+meta_underlined = false
+text = "
+
+"
+scroll_active = false
+
+[node name="ResponseBox" parent="." instance=ExtResource( 5 )]
+margin_top = 201.0
+margin_bottom = 273.0
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="CharTimer" type="Timer" parent="."]
+wait_time = 0.03
+
+[node name="MessageDelayTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="resized" from="." to="." method="_on_DialogBox_resized"]
+[connection signal="option_selected" from="ResponseBox" to="." method="_on_ResponseBox_option_selected"]
+[connection signal="timeout" from="CharTimer" to="." method="_on_CharTimer_timeout"]
