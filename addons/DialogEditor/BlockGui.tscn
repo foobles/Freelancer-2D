@@ -1,0 +1,186 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/DialogEditor/BlockGui.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.2, 0.219608, 0.278431, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="BlockGui" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="VBoxContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 1144.0
+margin_bottom = 632.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toolbar" type="HBoxContainer" parent="Content"]
+margin_right = 1136.0
+margin_bottom = 24.0
+
+[node name="NameLineEdit" type="LineEdit" parent="Content/Toolbar"]
+margin_left = 487.0
+margin_right = 617.0
+margin_bottom = 24.0
+size_flags_horizontal = 6
+custom_constants/minimum_spaces = 30
+expand_to_text_length = true
+placeholder_text = "Block Name"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="DeleteButton" type="Button" parent="Content/Toolbar"]
+margin_left = 1109.0
+margin_right = 1136.0
+margin_bottom = 24.0
+size_flags_horizontal = 0
+text = "[x]"
+
+[node name="HSeparator" type="HSeparator" parent="Content"]
+margin_top = 28.0
+margin_right = 1136.0
+margin_bottom = 32.0
+
+[node name="Lines" type="VBoxContainer" parent="Content"]
+margin_top = 36.0
+margin_right = 1136.0
+margin_bottom = 60.0
+
+[node name="List" type="VBoxContainer" parent="Content/Lines"]
+margin_right = 1136.0
+custom_constants/separation = 8
+
+[node name="AddLineButton" type="Button" parent="Content/Lines"]
+margin_top = 4.0
+margin_right = 1136.0
+margin_bottom = 24.0
+text = "Add Line"
+
+[node name="UpdateType" type="HBoxContainer" parent="Content"]
+margin_top = 64.0
+margin_right = 1136.0
+margin_bottom = 84.0
+
+[node name="Label" type="Label" parent="Content/UpdateType"]
+margin_top = 3.0
+margin_right = 566.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+text = "Update Type:"
+
+[node name="OptionButton" type="OptionButton" parent="Content/UpdateType"]
+margin_left = 570.0
+margin_right = 1136.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="IsQuery" type="HBoxContainer" parent="Content"]
+margin_top = 88.0
+margin_right = 1136.0
+margin_bottom = 112.0
+
+[node name="Label" type="Label" parent="Content/IsQuery"]
+margin_top = 5.0
+margin_right = 566.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Is Query:"
+
+[node name="CheckBox" type="CheckBox" parent="Content/IsQuery"]
+margin_left = 570.0
+margin_right = 594.0
+margin_bottom = 24.0
+size_flags_horizontal = 2
+
+[node name="NextBlock" type="HBoxContainer" parent="Content"]
+margin_top = 116.0
+margin_right = 1136.0
+margin_bottom = 140.0
+
+[node name="Label" type="Label" parent="Content/NextBlock"]
+margin_top = 5.0
+margin_right = 566.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Next Block:"
+
+[node name="LineEdit" type="LineEdit" parent="Content/NextBlock"]
+margin_left = 570.0
+margin_right = 1136.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Query" type="HBoxContainer" parent="Content"]
+margin_top = 144.0
+margin_right = 1136.0
+margin_bottom = 168.0
+
+[node name="Label" type="Label" parent="Content/Query"]
+margin_right = 566.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Query:"
+
+[node name="Options" type="VBoxContainer" parent="Content/Query"]
+margin_left = 570.0
+margin_right = 1136.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="List" type="VBoxContainer" parent="Content/Query/Options"]
+margin_right = 566.0
+
+[node name="Button" type="Button" parent="Content/Query/Options"]
+margin_top = 4.0
+margin_right = 566.0
+margin_bottom = 24.0
+text = "Add Option"
+
+[node name="UpdateFunc" type="HBoxContainer" parent="Content"]
+margin_top = 172.0
+margin_right = 1136.0
+margin_bottom = 196.0
+
+[node name="Label" type="Label" parent="Content/UpdateFunc"]
+margin_top = 5.0
+margin_right = 566.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Update Func:"
+
+[node name="LineEdit" type="LineEdit" parent="Content/UpdateFunc"]
+margin_left = 570.0
+margin_right = 1136.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+caret_blink = true
+caret_blink_speed = 0.5
+
+[connection signal="text_changed" from="Content/Toolbar/NameLineEdit" to="." method="_on_name_line_edit_changed"]
+[connection signal="pressed" from="Content/Toolbar/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="Content/Lines/AddLineButton" to="." method="_on_add_line_button_pressed"]
+[connection signal="item_selected" from="Content/UpdateType/OptionButton" to="." method="_on_update_type_option_button_item_selected"]
+[connection signal="toggled" from="Content/IsQuery/CheckBox" to="." method="_on_is_query_checkbox_toggled"]
+[connection signal="text_changed" from="Content/NextBlock/LineEdit" to="." method="_on_next_block_line_edit_changed"]
+[connection signal="pressed" from="Content/Query/Options/Button" to="." method="_on_query_add_option_button_pressed"]
+[connection signal="text_changed" from="Content/UpdateFunc/LineEdit" to="." method="_on_update_func_line_edit_changed"]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/DialogEditor/OptionGui.gd" type="Script" id=1]
+
+[node name="OptionGui" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KeyLineEdit" type="LineEdit" parent="."]
+margin_right = 558.0
+margin_bottom = 640.0
+size_flags_horizontal = 3
+placeholder_text = "Key"
+
+[node name="ValLineEdit" type="LineEdit" parent="."]
+margin_left = 562.0
+margin_right = 1121.0
+margin_bottom = 640.0
+size_flags_horizontal = 3
+placeholder_text = "Value"
+
+[node name="DeleteButton" type="Button" parent="."]
+margin_left = 1125.0
+margin_right = 1152.0
+margin_bottom = 640.0
+text = "[x]"
+
+[connection signal="text_changed" from="KeyLineEdit" to="." method="_on_key_line_edit_changed"]
+[connection signal="text_changed" from="ValLineEdit" to="." method="_on_val_line_edit_changed"]
+[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]

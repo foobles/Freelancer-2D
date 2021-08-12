@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/DialogEditor/DialogScriptGui.gd" type="Script" id=1]
+
+[node name="Control" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="HBoxContainer" parent="."]
+margin_right = 1152.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Start"]
+margin_top = 5.0
+margin_right = 574.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Start:"
+
+[node name="LineEdit" type="LineEdit" parent="Start"]
+margin_left = 578.0
+margin_right = 1152.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="BlockListMargin" type="MarginContainer" parent="."]
+margin_top = 28.0
+margin_right = 1152.0
+margin_bottom = 44.0
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
+
+[node name="BlockList" type="VBoxContainer" parent="BlockListMargin"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 1144.0
+margin_bottom = 8.0
+custom_constants/separation = 8
+
+[node name="AddBlockButton" type="Button" parent="."]
+margin_top = 48.0
+margin_right = 1152.0
+margin_bottom = 68.0
+text = "Add Block"
+
+[connection signal="text_changed" from="Start/LineEdit" to="." method="_on_start_line_edit_changed"]
+[connection signal="pressed" from="AddBlockButton" to="." method="_on_add_block_button_pressed"]
