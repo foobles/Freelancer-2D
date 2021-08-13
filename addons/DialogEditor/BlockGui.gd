@@ -36,6 +36,9 @@ onready var _update_func_section: HBoxContainer = $Content/UpdateFunc
 onready var _update_func_line_edit: LineEdit = $Content/UpdateFunc/LineEdit
 
 func replace_block(new_block: Dictionary) -> void:
+	if block == new_block:
+		return
+		
 	_name_line_edit.text = new_block.name
 	for line_gui in _lines_list.get_children():
 		_lines_list.remove_child(line_gui)

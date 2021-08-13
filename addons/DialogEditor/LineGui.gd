@@ -12,6 +12,9 @@ onready var _speaker_node_line_edit: LineEdit = $VBoxContainer/SpeakerNode/LineE
 onready var _animation_line_edit: LineEdit = $VBoxContainer/Animation/LineEdit
 
 func replace_line(new_line: Dictionary) -> void:
+	if line == new_line:
+		return
+		
 	_speech_text_edit.text = new_line.speech
 	_speaker_line_edit.text = new_line.speaker
 	_speaker_node_line_edit.text = new_line.speaker_node

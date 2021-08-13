@@ -11,6 +11,9 @@ onready var _val_line_edit: LineEdit = $ValLineEdit
 onready var _delete_button: Button = $DeleteButton
 
 func replace_option(new_option: Dictionary) -> void:
+	if option == new_option:
+		return
+		
 	_key_line_edit.text = new_option.key
 	_val_line_edit.text = new_option.val 
 	option = new_option

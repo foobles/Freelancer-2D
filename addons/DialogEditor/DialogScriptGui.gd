@@ -15,6 +15,9 @@ onready var _add_block_button: Button = $AddBlockButton
 
 
 func replace_dialog_script(new_dialog_script: PackedDialogScript) -> void:
+	if dialog_script == new_dialog_script:
+		return
+		
 	_start_line_edit.text = new_dialog_script.start
 	for block_gui in _block_list.get_children():
 		_block_list.remove_child(block_gui)
