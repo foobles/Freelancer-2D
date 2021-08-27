@@ -90,6 +90,5 @@ wait_time = 0.03
 wait_time = 0.5
 one_shot = true
 
-[connection signal="resized" from="." to="." method="_on_DialogBox_resized"]
 [connection signal="option_selected" from="ResponseBox" to="." method="_on_ResponseBox_option_selected"]
 [connection signal="timeout" from="CharTimer" to="." method="_on_CharTimer_timeout"]

@@ -15,6 +15,7 @@ onready var player: Player = $Entities/Player
 var npcs: YSort = null
 var props: YSort = null
 
+signal play_dialog(dialog_scenario_scene)
 
 func _ready() -> void:
 	map.enable_deferred()
@@ -79,3 +80,10 @@ func _take_map_entities() -> void:
 	entities.add_child(npcs)
 	self.props = props 
 	self.npcs = npcs 
+	
+	for npc in npcs.get_children():
+		npc.connect("play_dialog", self, "_on_npc_play_dialog")
+
+
+func _on_npc_play_dialog(dialog_scenario_scene: PackedScene) -> void:
+	emit_signal("play_dialog", dialog_scenario_scene)

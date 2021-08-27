@@ -21,3 +21,5 @@ margin_bottom = 36.0
 custom_constants/vseparation = 20
 custom_constants/hseparation = 40
 columns = 2
+
+[connection signal="resized" from="." to="." method="_on_OptionArea_resized"]

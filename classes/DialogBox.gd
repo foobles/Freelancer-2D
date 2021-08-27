@@ -3,6 +3,7 @@ extends VBoxContainer
 export var padding_size: int = 20 
 
 signal dialog_line_done()
+signal dialog_display_line_complete()
 signal dialog_option_selected(idx)
 
 const ResponseBox = preload("res://classes/ResponseBox.gd")
@@ -33,9 +34,10 @@ func play_message(name: String, msg: String, auto_continue: bool) -> void:
 	_char_timer.start()
 
 
-func ask_options(opts: Array) -> void:
+func ask_options(opts: Dictionary) -> void:
 	_response_box.options = opts
-	yield(self, "resized")
+	if _response_box.pending_resize:
+		yield(self, "resized")
 	show_options()
 
 
@@ -91,7 +93,6 @@ func hide_menu() -> void:
 
 
 
-
 func _ready() -> void:
 	add_constant_override("separation", padding_size)
 	margin_left = padding_size
@@ -102,6 +103,7 @@ func _complete_text() -> void:
 	_text_completed = true
 	_speech_label.visible_characters = -1 
 	_char_timer.stop()
+	emit_signal("dialog_display_line_complete")
 	if _text_auto_continue:
 		_message_delay_timer.start()
 		yield(_message_delay_timer, "timeout")
@@ -126,8 +128,8 @@ func _on_CharTimer_timeout() -> void:
 
 
 
-func _on_ResponseBox_option_selected(index: int) -> void:
+func _on_ResponseBox_option_selected(val) -> void:
 	_message_delay_timer.start()
 	yield(_message_delay_timer, "timeout")
 	hide_options()
-	emit_signal("dialog_option_selected", index)
+	emit_signal("dialog_option_selected", val)

@@ -6,6 +6,7 @@ export var blocks: Array  = []
 
 const DialogScript = preload("res://classes/DialogScript/DialogScript.gd")
 const Block = preload("res://classes/DialogScript/Block.gd")
+const UpdateType = Block.UpdateType
 const Line = preload("res://classes/DialogScript/Line.gd")
 
 func unpack() -> DialogScript:

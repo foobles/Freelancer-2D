@@ -36,3 +36,5 @@ __meta__ = {
 }
 
 [node name="DialogDriver" parent="." instance=ExtResource( 3 )]
+
+[connection signal="play_dialog" from="Viewport/TopDown" to="." method="_on_top_down_play_dialog"]

@@ -11,7 +11,6 @@ export var enabled: bool = false
 
 signal change_map(map, direction)
 
-
 onready var _hitboxes = [
 	$HBUp/CollisionShape2D,
 	$HBDown/CollisionShape2D,
